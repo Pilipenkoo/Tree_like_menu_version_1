@@ -1,0 +1,9 @@
+﻿.nav-item ul {
+  display: none;
+}
+
+.nav-item ul.show {
+  display: block;
+  animation: fadeIn 0.3s ease-out;
+}
+

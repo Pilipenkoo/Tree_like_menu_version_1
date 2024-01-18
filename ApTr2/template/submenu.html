@@ -1,0 +1,14 @@
+﻿<ul>
+  {% for child in children %}
+    <li>
+      <a href="{{ child.url }}" {% if url == child.url %}style="color: white; background-color: blue;"{% endif %}>
+          {{ child.tltle }}
+      </a>
+      {% if child.children.exists %}
+        <ul>
+          {% include 'submenu.html' with children=child.children.all %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

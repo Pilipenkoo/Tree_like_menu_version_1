@@ -1,0 +1,29 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% load tags %}
+
+{% block title %} Меню {% endblock %}
+
+{% block content %}
+<ul>
+  {% for item in menu_items %}
+    <li>
+      {% if item.parent is None %}
+        <a href="{{ item.url }}" class="nav-link {% if url == item.url %}active text-light bg-primary{% endif %}">
+          {% if url == item.url %}
+            <strong>{{ item.title }} - Это активный url</strong>
+          {% else %}
+            {{ item.title }}
+          {% endif %}
+        </a>
+        {% if item.children.exists %}
+          <ul >
+            {% include 'submenu.html' with children=item.children.all %}
+          </ul>
+        {% endif %}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
